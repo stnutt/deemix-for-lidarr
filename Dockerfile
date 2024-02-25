@@ -3,6 +3,12 @@ FROM --platform=$TARGETPLATFORM docker.io/library/node:16-alpine
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 
+ARG S6_OVERLAY_VERSION=3.1.6.2
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
+
 RUN echo "Building for TARGETPLATFORM=$TARGETPLATFORM | BUILDPLATFORM=$BUILDPLATFORM"
 RUN apk add --no-cache git jq python3 make gcc musl-dev g++ && \
     rm -rf /var/lib/apt/lists/*
@@ -25,11 +31,12 @@ RUN mv /deemix-gui/dist/deemix-server /deemix-server
 
 RUN chmod +x /deemix-server
 
-RUN ln -s /config /root/.config/deemix
+COPY deemix-server.sh /
+RUN chmod +x /deemix-server.sh
 
 ENV PUID=1000
 ENV PGID=1000
 
 VOLUME ["/config", "/downloads"]
 EXPOSE 6595
-ENTRYPOINT /deemix-server --singleuser true --host 0.0.0.0
+ENTRYPOINT /deemix-server.sh

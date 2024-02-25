@@ -4,9 +4,12 @@ services:
     deemix-test:
         image: codefaux/deemix-for-lidarr
         container_name: deemix
+        environment:
+            - PUID:1000
+            - PGID:1000
         volumes:
             - /docker/deemix/downloads:/downloads
-            - /docker/deemix/config:/config
-        restart: unless-stopped
+            - /docker/deemix/config:/deemix-gui/config
         ports:
             - 6595:6595
+        restart: unless-stopped
