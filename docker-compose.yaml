@@ -1,0 +1,12 @@
+version: "3"
+name: deemix-for-lidarr
+services:
+    deemix-test:
+        image: codefaux/deemix-for-lidarr
+        container_name: deemix
+        volumes:
+            - /docker/deemix/downloads:/downloads
+            - /docker/deemix/config:/config
+        restart: unless-stopped
+        ports:
+            - 6595:6595
