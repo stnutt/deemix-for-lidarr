@@ -5,8 +5,8 @@ services:
         image: codefaux/deemix-for-lidarr
         container_name: deemix
         environment:
-            - PUID:1000
-            - PGID:1000
+            - PUID:100
+            - PGID:99
         volumes:
             - /docker/deemix/downloads:/downloads
             - /docker/deemix/config:/deemix-gui/config
