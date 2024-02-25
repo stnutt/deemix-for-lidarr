@@ -13,8 +13,11 @@ NOTES:
 - This expects a Lidarr branch which supports Plugins. I'm using Docker; ghcr.io/hotio/lidarr:pr-plugins
 - My work here is solely rewriting https://github.com/youegraillot/lidarr-on-steroids/blob/main/Dockerfile and documenting things.
 -- The Dockerfile downloads and builds https://gitlab.com/RemixDev/deemix-gui with a patch as suggested in https://github.com/youegraillot/lidarr-on-steroids/issues/63
--- /config is used to store Deemix-gui's config data, symlinked at /root/.config/deemix
- 
+
+[Docker-compose example](https://github.com/codefaux/deemix-for-lidarr/blob/main/docker-compose.yaml)
+- You probably need to change PID/GID
+- You must provide /deemix-gui/config via docker mountpoint or volume.
+
 Quick setup info;
 In Deemix:
 - Go to Settings, check the boxes to "Create Folder Structure for" on Artists, Albums, and Singles
