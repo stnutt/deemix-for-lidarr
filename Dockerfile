@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM docker.io/library/node:16-alpine as deemix
+FROM --platform=$TARGETPLATFORM docker.io/library/node:16-alpine
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
@@ -23,35 +23,14 @@ RUN sed -i 's/const channelData = await dz.gw.get_page(channelName)/let channelD
 RUN yarn dist-server
 RUN mv /deemix-gui/dist/deemix-server /deemix-server
 
+RUN chmod +x /deemix-server
 
-FROM cr.hotio.dev/hotio/lidarr:pr-plugins-1.4.1.3564
+RUN ln -s /config /root/.config/deemix
+RUN ln -s /downloads /deemix-gui/music
 
-LABEL maintainer="youegraillot"
-
-ENV DEEMIX_SINGLE_USER=true
-ENV AUTOCONFIG=true
-ENV CLEAN_DOWNLOADS=true
 ENV PUID=1000
 ENV PGID=1000
 
-# flac2mp3
-RUN apk add --no-cache ffmpeg && \
-    rm -rf /var/lib/apt/lists/*
-COPY lidarr-flac2mp3/root/usr /usr
-
-# deemix
-COPY --from=deemix /deemix-server /deemix-server
-RUN chmod +x /deemix-server
-VOLUME ["/config_deemix", "/downloads"]
+VOLUME ["/config", "/downloads"]
 EXPOSE 6595
-
-# arl-watch
-RUN apk add --no-cache inotify-tools && \
-    rm -rf /var/lib/apt/lists/*
-
-COPY root /
-RUN chmod +x /etc/services.d/*/run && \
-    chmod +x /usr/local/bin/*.sh
-
-VOLUME ["/config", "/music"]
-EXPOSE 6595 8686
+ENTRYPOINT /deemix-server --singleuser true --host 0.0.0.0
