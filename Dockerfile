@@ -34,8 +34,9 @@ RUN chmod +x /deemix-server
 COPY deemix-server.sh /
 RUN chmod +x /deemix-server.sh
 
-ENV PUID=1000
-ENV PGID=1000
+ENV PUID=99
+ENV PGID=100
+ENV UMASK=0022
 
 VOLUME ["/config", "/downloads"]
 EXPOSE 6595
