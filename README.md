@@ -1,5 +1,7 @@
 Extracted from https://github.com/youegraillot/lidarr-on-steroids/
 
+Issues and Discussions are open, feel free to reach out.
+
 Directly or indirectly using the work of these projects:
 - https://gitlab.com/RemixDev/deemix-gui
 - https://github.com/ta264/Lidarr.Plugin.Deemix
