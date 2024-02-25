@@ -26,7 +26,6 @@ RUN mv /deemix-gui/dist/deemix-server /deemix-server
 RUN chmod +x /deemix-server
 
 RUN ln -s /config /root/.config/deemix
-RUN ln -s /downloads /deemix-gui/music
 
 ENV PUID=1000
 ENV PGID=1000
