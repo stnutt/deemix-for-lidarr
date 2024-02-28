@@ -30,7 +30,7 @@ In Deemix:
 In Lidarr:
 - Go into System / Plugins, and install this plugin via URL: https://github.com/ta264/Lidarr.Plugin.Deemix
 - Go to Settings / Download Clients, add and configure a Deemix download client.
-- It helps to use Docker's container name resolution feature for intra-container connections. Regardless of methodology, Docker will resolve a container name to its most accessible IP when referenced from inside a Docker environment. IE, name your containers "deemix" and "lidarr" and use "deemix:6595" instead of "<ip>:6595" when configuring both Download Client -and- Indexer. (Also useful for other containers, such as those requiring external database containers, regardless of wether or not they're in a docker-compose.yaml service group together.)
+- It helps to use Docker's container name resolution feature for intra-container connections. Regardless of methodology, Docker will resolve a container name to its most accessible IP when referenced from inside a Docker environment. IE, name your containers "deemix" and "lidarr" and use "deemix:6595" instead of "\<ip\>:6595" when configuring both Download Client -and- Indexer. (Also useful for other containers, such as those requiring external database containers, regardless of wether or not they're in a docker-compose.yaml service group together.)
 - Go to Settings / Indexers, add and configure a Deemix indexer.
 -- You should disable RSS feeds, because Deemix doesn't support them.
 - Under Settings / Profiles, look to Delay Profiles, and click the wrench on the right of the window for Default (or your custom profile(s)) and enable the Deemix protocol.
