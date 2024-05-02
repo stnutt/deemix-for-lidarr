@@ -8,7 +8,7 @@ This guide provides instructions for setting up Deemix integration with Lidarr, 
 - [Lidarr.Plugin.Deemix by ta264](https://github.com/ta264/Lidarr.Plugin.Deemix)
 - [hotio/lidarr Docker image with plugin support](https://ghcr.io/hotio/lidarr:pr-plugins)
 - Extracted from [Docker-on-steroids](https://github.com/youegraillot/lidarr-on-steroids/)
-- 
+
 ## Links of Note
 - Issue #92 ([Origin, initial discussion](youegraillot#92))
 - Issue #63 ([Patch during docker build](youegraillot#63))
@@ -36,7 +36,7 @@ To set up Deemix integration in Lidarr, follow these steps:
 
 1. Install the Deemix plugin via URL: [Lidarr.Plugin.Deemix](https://github.com/ta264/Lidarr.Plugin.Deemix).
 2. Configure a Deemix download client under Settings / Download Clients.
-3. Use Docker's container name resolution feature for intra-container connections. Configure the client with "deemix:6595" instead of `<ip>:6595`.
+3. Use Docker's container name resolution feature for intra-container connections. Regardless of methodology, Docker will resolve a container name to its most accessible IP when referenced from inside a Docker environment. IE, name your containers "deemix" and "lidarr" and use "deemix:6595" instead of "<ip>:6595" when configuring both Download Client -and- Indexer. (Also useful for other containers, such as those requiring external database containers, regardless of whether or not they're in a docker-compose.yaml service group together.)
 4. Add and configure a Deemix indexer under Settings / Indexers. Disable RSS feeds.
 5. In Settings / Profiles, enable the Deemix protocol for Default or custom profiles under Delay Profiles.
 
