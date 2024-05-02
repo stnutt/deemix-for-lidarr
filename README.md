@@ -1,4 +1,4 @@
-# Deemix Integration Setup Guide
+# Lidarr/Deemix Integration Setup Guide
 
 ## Introduction
 This guide provides instructions for setting up Deemix integration with Lidarr, allowing for seamless downloading of music from Deezer. This setup is based on the work of several projects, including Deemix GUI by RemixDev, Lidarr.Plugin.Deemix by ta264, and the hotio/lidarr Docker image with plugin support, as well as Docker-on-steroids.
