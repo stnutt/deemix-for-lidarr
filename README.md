@@ -17,7 +17,8 @@ This guide provides instructions for setting up Deemix integration with Lidarr, 
 - This expects a Lidarr branch that supports Plugins. I'm using Docker; ghcr.io/hotio/lidarr:pr-plugins.
 - My work here is solely rewriting [Dockerfile](https://github.com/youegraillot/lidarr-on-steroids/blob/main/Dockerfile) and documenting things. The Dockerfile downloads and builds [Deemix GUI](https://gitlab.com/RemixDev/deemix-gui) with a patch as suggested in youegraillot#63.
 
-## Docker-compose Example
+## Docker-compose 
+- Example provided; https://github.com/codefaux/deemix-for-lidarr/blob/main/docker-compose.yaml
 - Adjust PID/GID as necessary.
 - You must provide `/deemix-gui/config` via Docker mountpoint or volume.
 
