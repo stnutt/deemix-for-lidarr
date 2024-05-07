@@ -1,16 +1,32 @@
 version: "3"
 name: deemix-for-lidarr
 services:
-    deemix-test:
-        image: codefaux/deemix-for-lidarr
-        container_name: deemix
-        environment:
-            - PUID:100
-            - PGID:99
-            - UMASK:0022
-        volumes:
-            - /docker/deemix/downloads:/downloads
-            - /docker/deemix/config:/deemix-gui/config
-        ports:
-            - 6595:6595
-        restart: unless-stopped
+  deemix:
+    container_name: deemix
+    image: codefaux/deemix-for-lidarr
+    environment:
+      - PUID:100
+      - PGID:99
+      - UMASK:0022
+      - TZ=Etc/UTC
+    volumes:
+      - /docker/deemix/downloads:/downloads
+      - /docker/deemix/config:/deemix-gui/config
+    ports:
+      - 6595:6595
+    restart: unless-stopped
+
+  lidarr:
+    container_name: lidarr
+    image: ghcr.io/hotio/lidarr:pr-plugins
+    environment:
+      - PUID=100
+      - PGID=99
+      - UMASK=0022
+      - TZ=Etc/UTC
+    volumes:
+    - /docker/deemix/downloads:/downloads
+    - /docker/lidarr/config:/config
+    ports:
+      - 8686:8686
+    restart: unless-stopped
