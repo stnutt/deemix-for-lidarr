@@ -11,7 +11,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /docker/deemix/downloads:/downloads
-      - /docker/deemix/config:/deemix-gui/config
+      - /docker/deemix/config:/config
     ports:
       - 6595:6595
     restart: unless-stopped

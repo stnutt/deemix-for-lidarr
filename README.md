@@ -20,7 +20,7 @@ This guide provides instructions for setting up Deemix integration with Lidarr, 
 ## Docker-compose 
 - Example provided; https://github.com/codefaux/deemix-for-lidarr/blob/main/docker-compose.yaml
 - Adjust PID/GID as necessary.
-- You must provide `/deemix-gui/config` via Docker mountpoint or volume.
+- You must provide `/config` via Docker mountpoint or volume.
 
 ## Quick Setup Info
 
